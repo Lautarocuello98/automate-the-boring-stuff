@@ -15,3 +15,7 @@ Understand how to control the execution flow of a program using conditions and l
 
 ## Notes
 These scripts introduce decision-making and repetition, which are essential for automation.
+
+## Projects
+guessthename.py
+rpsgame.py

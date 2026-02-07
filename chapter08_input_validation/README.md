@@ -13,3 +13,7 @@ Make programs more robust by handling invalid input gracefully.
 
 ## Notes
 This chapter improves program reliability and user experience.
+
+## Projects
+mq.py
+sandwich_marker

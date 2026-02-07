@@ -4,6 +4,11 @@ import smtplib
 from email.message import EmailMessage
 from pathlib import Path
 
+# This script allows you to **send an email from the terminal using SMTP (Gmail), taking the recipient, 
+# subject, and message from command-line arguments or from a file, and using credentials defined
+# in environment variables**.
+
+
 
 # Send one email using SMTP over SSL (Gmail)
 def send_email_smtp(to_addr: str, subject: str, body: str) -> None:

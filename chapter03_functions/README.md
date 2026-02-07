@@ -14,3 +14,7 @@ Learn how to organize logic into reusable and maintainable functions.
 
 ## Notes
 Functions are heavily used throughout the rest of the book.
+
+## Project
+Magic8ball.py
+Zigzag.py

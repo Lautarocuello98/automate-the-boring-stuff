@@ -14,3 +14,7 @@ Learn how to store and organize related data using dictionaries.
 
 ## Notes
 This chapter introduces more realistic data modeling.
+
+## Projects
+chess_validator.py
+tictactoe.py

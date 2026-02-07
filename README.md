@@ -8,7 +8,7 @@ The focus is on practical Python scripting and automation:
 - File and folder operations
 - Web scraping
 - Spreadsheets (Excel / Google Sheets)
-- PDFs / Word documents
+- PDFs and Word documents
 - CSV and JSON data
 - Scheduling and automation
 - Email and messaging
@@ -21,7 +21,7 @@ The focus is on practical Python scripting and automation:
 
 1) Clone the repository:
 
-git clone https://github.com/Lautarocuello98/automate-the-boring-stuff.git
+git clone https://github.com/Lautarocuello98/automate-the-boring-stuff.git  
 cd automate-the-boring-stuff
 
 2) Create a virtual environment:
@@ -30,14 +30,14 @@ python -m venv .venv
 
 3) Activate the environment:
 
-Windows (PowerShell):
-.venv\Scripts\Activate.ps1
+Windows (PowerShell):  
+.venv\Scripts\Activate.ps1  
 
-Windows (CMD):
-.venv\Scripts\activate.bat
+Windows (CMD):  
+.venv\Scripts\activate.bat  
 
-macOS / Linux:
-source .venv/bin/activate
+macOS / Linux:  
+source .venv/bin/activate  
 
 4) Install dependencies:
 
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 5) Run a script (example):
 
-python chapter10/backup_to_zip.py
+python chapter10/projects/renameDates.py
 
 ---
 
@@ -72,12 +72,15 @@ python chapter10/backup_to_zip.py
 - [Chapter 19: Manipulating Images](chapter19)
 - [Chapter 20: Controlling the Keyboard and Mouse with GUI Automation](chapter20)
 
+Inside each chapter folder, there is an **exercises** subfolder and a **projects** subfolder, along with a README explaining the main concepts of the chapter.
+
 ---
 
 ## Requirements
 
 - Python 3.10+ recommended
-- Install dependencies with:
+
+Install dependencies with:
 
 pip install -r requirements.txt
 

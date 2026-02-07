@@ -14,3 +14,7 @@ Handle and transform text data efficiently.
 
 ## Notes
 String manipulation is critical for automation tasks involving files and user input.
+
+## Projects
+myzombie.py
+pigLat.py

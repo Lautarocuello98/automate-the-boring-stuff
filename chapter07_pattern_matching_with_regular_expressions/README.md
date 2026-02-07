@@ -13,3 +13,7 @@ Learn how to search and extract information from text using regex.
 
 ## Notes
 Regular expressions are powerful but require careful practice.
+
+## Projects
+date_detections.py
+phoneAndEmail.py

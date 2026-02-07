@@ -1,4 +1,4 @@
-#randomQuizGenerator.py - creates quizzes with questions and answe in random order, along with the answer key
+#randomQuizGenerator.py - creates quizzes with questions and answer in random order, along with the answer key
 
 import random
 
