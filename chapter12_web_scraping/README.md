@@ -26,3 +26,7 @@ download_xkcd.py (Downloads every single XKCD comic.)
 send_email.py (Sends an email from the terminal using Gmail SMTP, with the message provided as arguments or from a file.)
 
 images_downloader.py (Downloads all images from a given webpage URL)
+
+2048_bot.py (Automates the 2048 web game by sending arrow key inputs)
+
+link_verification.py (This script checks a web page for broken links.)
