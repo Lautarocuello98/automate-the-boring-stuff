@@ -17,5 +17,7 @@ This chapter is essential for real-world automation.
 
 ## Projects
 extending_multi_clipboard.pyw (Saves and loads pieces of text to the clipboard)
+
 randomQuizGenerator.py (creates quizzes with questions and answer in random order, with states of U.S.A)
+
 randomWorldCapitals.py (creates quizzes with questions and answer in random order, with countries and capitals)

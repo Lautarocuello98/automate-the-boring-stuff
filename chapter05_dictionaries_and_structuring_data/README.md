@@ -17,4 +17,5 @@ This chapter introduces more realistic data modeling.
 
 ## Projects
 chess_validator.py
+
 tictactoe.py

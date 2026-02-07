@@ -17,4 +17,5 @@ Lists are one of the most commonly used data structures in Python.
 
 ## Projects
 coin_flip.py
+
 conway.py
