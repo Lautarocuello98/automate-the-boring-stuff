@@ -1,87 +1,90 @@
-# Automate the Boring Stuff with Python — Exercises and Personal Practice
+# Automate the Boring Stuff with Python (2nd Edition)
 
-This repository contains Python exercises and practice work based on the book  
-**_Automate the Boring Stuff with Python_** by Al Sweigart.
+## About this repository
 
-The repository follows the original structure of the book, which consists of
-**20 chapters divided into two parts**. In addition to the book exercises, the
-repository includes **personal practice scripts** created to reinforce and
-expand on the concepts covered in each chapter.
+This repository contains my exercises and practice projects while studying *Automate the Boring Stuff with Python (2nd Edition)* by Al Sweigart.
 
----
-
-## Book Structure
-
-### Part 1 — Python Programming Basics (Chapters 1–6)
-
-Part 1 focuses on core Python fundamentals and problem-solving skills:
-
-1. **Chapter 1** — Python Basics  
-2. **Chapter 2** — Flow Control  
-3. **Chapter 3** — Functions  
-4. **Chapter 4** — Lists  
-5. **Chapter 5** — Dictionaries and Structuring Data  
-6. **Chapter 6** — Manipulating Strings  
+The focus is on practical Python scripting and automation:
+- File and folder operations
+- Web scraping
+- Spreadsheets (Excel / Google Sheets)
+- PDFs / Word documents
+- CSV and JSON data
+- Scheduling and automation
+- Email and messaging
+- Image manipulation
+- GUI automation
 
 ---
 
-### Part 2 — Automating Tasks with Python (Chapters 7–20)
+## How to run
 
-Part 2 applies Python to real-world automation tasks:
+1) Clone the repository:
 
-7. **Chapter 7** — Pattern Matching with Regular Expressions  
-8. **Chapter 8** — Input Validation  
-9. **Chapter 9** — Reading and Writing Files  
-10. **Chapter 10** — Organizing Files  
-11. **Chapter 11** — Debugging  
-12. **Chapter 12** — Web Scraping  
-13. **Chapter 13** — Working with Excel Spreadsheets  
-14. **Chapter 14** — Working with Google Sheets  
-15. **Chapter 15** — Working with PDF and Word Documents  
-16. **Chapter 16** — Working with CSV Files and JSON Data  
-17. **Chapter 17** — Keeping Time, Scheduling Tasks, and Launching Programs  
-18. **Chapter 18** — Sending Email and Text Messages  
-19. **Chapter 19** — Manipulating Images  
-20. **Chapter 20** — Controlling the Keyboard and Mouse with GUI Automation  
+git clone https://github.com/Lautarocuello98/automate-the-boring-stuff.git
+cd automate-the-boring-stuff
 
----
+2) Create a virtual environment:
 
-## Repository Content
+python -m venv .venv
 
-- Official exercises from the book
-- Personal practice scripts and small custom programs
-- Variations and extensions of book exercises
-- Experimental code written during the learning process
+3) Activate the environment:
 
-Book exercises and personal work are intentionally mixed to reflect practical
-learning rather than only following predefined solutions.
+Windows (PowerShell):
+.venv\Scripts\Activate.ps1
 
----
+Windows (CMD):
+.venv\Scripts\activate.bat
 
-## Purpose
+macOS / Linux:
+source .venv/bin/activate
 
-- Learn and practice Python fundamentals
-- Develop automation skills using Python
-- Document learning progress over time
-- Serve as a public reference and learning portfolio
+4) Install dependencies:
+
+pip install -r requirements.txt
+
+5) Run a script (example):
+
+python chapter10/backup_to_zip.py
 
 ---
 
-## Disclaimer
+## Contents (2nd Edition)
 
-This repository is for educational purposes only.  
-Solutions may differ from those provided by the book’s author.
+- [Chapter 1: Python Basics](chapter01)
+- [Chapter 2: Flow Control](chapter02)
+- [Chapter 3: Functions](chapter03)
+- [Chapter 4: Lists](chapter04)
+- [Chapter 5: Dictionaries and Structuring Data](chapter05)
+- [Chapter 6: Manipulating Strings](chapter06)
+- [Chapter 7: Pattern Matching with Regular Expressions](chapter07)
+- [Chapter 8: Input Validation](chapter08)
+- [Chapter 9: Reading and Writing Files](chapter09)
+- [Chapter 10: Organizing Files](chapter10)
+- [Chapter 11: Debugging](chapter11)
+- [Chapter 12: Web Scraping](chapter12)
+- [Chapter 13: Working with Excel Spreadsheets](chapter13)
+- [Chapter 14: Working with Google Sheets](chapter14)
+- [Chapter 15: Working with PDF and Word Documents](chapter15)
+- [Chapter 16: Working with CSV Files and JSON Data](chapter16)
+- [Chapter 17: Keeping Time, Scheduling Tasks, and Launching Programs](chapter17)
+- [Chapter 18: Sending Email and Text Messages](chapter18)
+- [Chapter 19: Manipulating Images](chapter19)
+- [Chapter 20: Controlling the Keyboard and Mouse with GUI Automation](chapter20)
 
 ---
 
-## Credits
+## Requirements
 
-*Automate the Boring Stuff with Python*  
-Author: Al Sweigart  
-https://automatetheboringstuff.com/
+- Python 3.10+ recommended
+- Install dependencies with:
+
+pip install -r requirements.txt
 
 ---
 
 ## Author
 
-Lautaro Cuello
+Lautaro Cuello  
+GitHub: https://github.com/Lautarocuello98  
+LinkedIn: https://www.linkedin.com/in/lautaro-cuello-7ba4063a3/
