@@ -1,18 +1,17 @@
 # Chapter 10 – Organizing Files 📁
 
-Exercises from **Chapter 10: Organizing Files**.
-
 ## Topics Covered
-- `os` and `shutil` modules
-- Copying, moving, and deleting files
-- Walking directory trees
-- Automating file organization
+- `os`, `shutil`, and `send2trash`
+- Copying, moving, renaming, and deleting files
+- Walking directory trees with `os.walk()`
+- Automating file organization and cleanup tasks
 
 ## Goal
-Automate repetitive file management tasks.
+Automate repetitive file management tasks such as organizing folders, cleaning up directories, and processing large numbers of files efficiently.
 
 ## Notes
-This chapter introduces practical automation scripts.
+File organization is one of the most common real-world automation tasks.  
+This chapter focuses on building scripts that safely manipulate files and directories while reducing manual work.
 
 ## Projects
 deleting_unneeded_files.py (delete empty files)

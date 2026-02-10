@@ -1,7 +1,5 @@
 # Chapter 1 – Python Basics 🐍
 
-This folder contains exercises and scripts from **Chapter 1: Python Basics** of *Automate the Boring Stuff with Python*.
-
 ## Topics Covered
 - Variables and data types
 - Integers, floats, strings

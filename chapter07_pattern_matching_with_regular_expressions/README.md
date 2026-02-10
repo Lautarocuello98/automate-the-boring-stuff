@@ -1,7 +1,5 @@
 # Chapter 7 – Pattern Matching with Regular Expressions 🔍
 
-Scripts from **Chapter 7: Pattern Matching with Regular Expressions**.
-
 ## Topics Covered
 - Regular expressions (`re` module)
 - Matching patterns

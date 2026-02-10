@@ -1,7 +1,5 @@
 # Chapter 3 – Functions 🧩
 
-Code examples and exercises from **Chapter 3: Functions**.
-
 ## Topics Covered
 - Defining functions
 - Parameters and arguments

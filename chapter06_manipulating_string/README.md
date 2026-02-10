@@ -1,7 +1,5 @@
 # Chapter 6 – Manipulating Strings ✏️
 
-Examples and exercises from **Chapter 6: Manipulating Strings**.
-
 ## Topics Covered
 - String methods
 - Formatting strings

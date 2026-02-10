@@ -1,7 +1,5 @@
 # Chapter 9 – Reading and Writing Files 📄
 
-Scripts related to **Chapter 9: Reading and Writing Files**.
-
 ## Topics Covered
 - File paths
 - Reading text files

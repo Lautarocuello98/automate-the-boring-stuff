@@ -1,7 +1,5 @@
 # Chapter 5 – Dictionaries & Structuring Data 🗂️
 
-Exercises from **Chapter 5: Dictionaries and Structuring Data**.
-
 ## Topics Covered
 - Dictionaries
 - Keys and values

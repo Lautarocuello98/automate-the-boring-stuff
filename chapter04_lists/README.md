@@ -1,6 +1,5 @@
 # Chapter 4 – Lists 📚
 
-Scripts related to **Chapter 4: Lists**.
 
 ## Topics Covered
 - List creation and indexing

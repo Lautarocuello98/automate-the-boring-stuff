@@ -1,7 +1,5 @@
 # Chapter 2 – Flow Control 🔁
 
-Exercises and examples from **Chapter 2: Flow Control**.
-
 ## Topics Covered
 - Boolean values
 - Comparison operators

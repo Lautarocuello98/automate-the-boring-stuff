@@ -1,7 +1,5 @@
 # Chapter 8 – Input Validation ✅
 
-Exercises from **Chapter 8: Input Validation**.
-
 ## Topics Covered
 - Validating user input
 - Try/except blocks
