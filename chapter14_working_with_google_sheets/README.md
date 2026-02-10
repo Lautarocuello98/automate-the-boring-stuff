@@ -14,3 +14,10 @@ Automate repetitive tasks involving online spreadsheets, such as reading data, u
 
 ## Notes
 Working with cloud spreadsheets is a core automation skill because many real-world workflows store and share data online rather than in local Excel files.
+
+## Projects
+download_google_forms_data.py (Retrieve emails from Google Sheets, clean them, and display results.)
+
+convert_to_other_format.py (Upload a spreadsheet to Google Sheets, convert it to another format, and download the result locally.)
+
+find_mistake.py (Check spreadsheet rows and find incorrect calculated totals.)
