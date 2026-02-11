@@ -1,7 +1,5 @@
 # Chapter 12 – Web Scraping 🌐
 
-Scripts from **Chapter 12: Web Scraping**.
-
 ## Topics Covered
 - HTTP requests
 - Web scraping concepts

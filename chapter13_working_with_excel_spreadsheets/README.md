@@ -1,7 +1,5 @@
 # Chapter 13 – Working with Excel Spreadsheets 📊
 
-Scripts from **Chapter 13: Working with Excel Spreadsheets**.
-
 ## Topics Covered
 - Reading Excel files with openpyxl  
 - Writing data to Excel files  

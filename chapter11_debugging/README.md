@@ -1,7 +1,5 @@
 # Chapter 11 – Debugging 🐞
 
-Examples from **Chapter 11: Debugging**.
-
 ## Topics Covered
 - Common errors and tracebacks
 - Reading error messages effectively

@@ -1,7 +1,5 @@
 # Chapter 14 – Working with Google Sheets ☁️📊
 
-Scripts from **Chapter 14: Working with Google Sheets**.
-
 ## Topics Covered
 - Connecting to Google Sheets with ezsheets  
 - Reading and writing spreadsheet data  
