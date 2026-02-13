@@ -24,7 +24,7 @@ out_dir.mkdir(parents=True, exist_ok=True)
 STATE_FILE = out_dir / "last.txt"
 
 # How often to check for new comics (seconds)
-CHECK_EVERY_SECONDS = 30  # 30 minutes
+CHECK_EVERY_SECONDS = 30 * 60  # 30 minutes
 
 # Number of comics each thread downloads
 CHUNK_SIZE = 10
@@ -79,7 +79,7 @@ def get_comic_image_url(session: requests.Session, comic_id: int) -> str:
 
 
 def download_image(session: requests.Session, img_url: str, out_path: Path) -> None:
-    """Download image in chunks."""
+    # Download image in chunks.
     with session.get(img_url, stream=True, timeout=30) as r:
         r.raise_for_status()
         with open(out_path, "wb") as f:
