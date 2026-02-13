@@ -1,0 +1,3 @@
+import subprocess
+
+subprocess.Popen("c:\\Windows\\System32\\calc.exe")
