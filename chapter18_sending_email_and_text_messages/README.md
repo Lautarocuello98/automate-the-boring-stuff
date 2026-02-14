@@ -24,5 +24,8 @@ SMTP is used to send messages, while IMAP is commonly used to read and process i
 
 random_chore_emailer.py (Assigns a random chore to each person and emails them the result).
 
-umbrella_reminder (Checks if rain is expected every days).
+umbrella_reminder.py (Checks if rain is expected every days).
 
+auto_unsubscriber.py (Logs into an email account, finds unsubscribe links, and opens them).
+
+email_link_opener.py (Checks an email account every 15 minutes for new messages with a special subject).
