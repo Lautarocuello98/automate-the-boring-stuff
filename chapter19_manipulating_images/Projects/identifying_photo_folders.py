@@ -6,11 +6,9 @@ import os
 from pathlib import Path
 from PIL import Image  
 
-
 for foldername, subfolders, filenames in os.walk(r"C:\\"):
     num_photo_files = 0
     num_non_photo_files = 0
-
     folder_path = Path(foldername)
 
     for filename in filenames:
@@ -32,14 +30,12 @@ for foldername, subfolders, filenames in os.walk(r"C:\\"):
         if width <= 500 or height <= 500:
             num_non_photo_files += 1
             continue
-        
         num_photo_files += 1
 
     total_files = num_photo_files + num_non_photo_files
     if total_files == 0:
         continue
         
-
     if num_photo_files > total_files / 2:
         print(f"the folder {foldername} is a photo folder")
         
