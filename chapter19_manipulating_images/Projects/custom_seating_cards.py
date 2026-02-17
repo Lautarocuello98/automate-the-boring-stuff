@@ -5,7 +5,6 @@
 # - The guest's name centered on the card
 # - Decorative flower images in two opposite corners
 
-
 import os
 from PIL import Image, ImageFont, ImageDraw
 
