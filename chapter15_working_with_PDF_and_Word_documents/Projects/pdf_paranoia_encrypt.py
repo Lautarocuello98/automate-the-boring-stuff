@@ -23,12 +23,16 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
         return False
 
     writer = PdfWriter()
+
     try:
         for page in reader.pages:
             writer.add_page(page)
+
         writer.encrypt(password)
+
         with open(out_path, "wb") as f:
             writer.write(f)
+
     except Exception as e:
         print(f"[ERROR] Failed processing {pdf_path}: {e}")
         return False
@@ -36,9 +40,15 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
     # Verify before deleting original
     try:
         test_reader = PdfReader(str(out_path))
-        if (not test_reader.is_encrypted) or (test_reader.decrypt(password) == 0):
-            print(f"[ERROR] Verification failed: {out_path}")
+
+        if not test_reader.is_encrypted:
+            print(f"[ERROR] File not encrypted: {out_path}")
             return False
+
+        if test_reader.decrypt(password) == 0:
+            print(f"[ERROR] Verification failed: wrong password")
+            return False
+
     except Exception as e:
         print(f"[ERROR] Verification failed: {e}")
         return False
@@ -65,6 +75,7 @@ def main():
         raise SystemExit(1)
 
     count = 0
+
     for foldername, _, filenames in os.walk(root):
         for filename in filenames:
             name = filename.lower()

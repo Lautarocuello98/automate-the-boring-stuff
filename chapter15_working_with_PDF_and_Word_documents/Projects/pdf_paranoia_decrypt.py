@@ -30,18 +30,21 @@ def decrypt_pdf(pdf_path: Path, password: str) -> bool:
 
     try:
         if reader.decrypt(password) == 0:
-            print(f"[BAD PASS] {pdf_path.name}")
+            print(f"[BAD PASS] Incorrect password for {pdf_path.name}")
             return False
     except Exception as e:
         print(f"[ERROR] Decrypt failed: {e}")
         return False
 
     writer = PdfWriter()
+
     try:
         for page in reader.pages:
             writer.add_page(page)
+
         with open(out_path, "wb") as f:
             writer.write(f)
+
     except Exception as e:
         print(f"[ERROR] Failed writing {out_path}: {e}")
         return False
@@ -63,6 +66,7 @@ def main():
         raise SystemExit(1)
 
     count = 0
+
     for foldername, _, filenames in os.walk(root):
         for filename in filenames:
             if filename.lower().endswith("_encrypted.pdf"):
