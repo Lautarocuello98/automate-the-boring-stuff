@@ -25,7 +25,7 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
             return False
 
     except Exception as e:
-        print(f"[ERROR] Cannot read {pdf_path}: {e}")
+        print(f"[ERROR] Cannot read {pdf_path.name}: {e}")
         return False
 
     writer = PdfWriter()
