@@ -1,5 +1,6 @@
+# Lautarocuello98
 # pdf_paranoia_encrypt.py
-# Recursively encrypts PDFs in a folder, verifies the encrypted copy and removes the original only if verification succeeds.
+# Recursively encrypts PDFs, verifies the result, then removes the original.
 # Usage: python pdf_paranoia_encrypt.py "FOLDER" "PASSWORD"
 
 import os
@@ -9,66 +10,42 @@ from pypdf import PdfReader, PdfWriter
 
 
 def encrypt_pdf(pdf_path: Path, password: str) -> bool:
-    """Encrypt a PDF and create <name>_encrypted.pdf. Returns True if successful."""
     out_path = pdf_path.with_name(pdf_path.stem + "_encrypted.pdf")
 
-    # Avoid overwriting existing encrypted files
     if out_path.exists():
-        print(f"[SKIP] Already exists: {out_path}")
+        print(f"[SKIP] {out_path} already exists")
         return False
 
-    # Load original PDF
     try:
         reader = PdfReader(str(pdf_path))
     except Exception as e:
-        print(f"[ERROR] Could not read {pdf_path}: {e}")
+        print(f"[ERROR] Cannot read {pdf_path}: {e}")
         return False
 
     writer = PdfWriter()
-
-    # Copy all pages to new writer
     try:
         for page in reader.pages:
             writer.add_page(page)
-    except Exception as e:
-        print(f"[ERROR] Failed copying pages in {pdf_path}: {e}")
-        return False
-
-    # Apply password protection
-    try:
         writer.encrypt(password)
-    except Exception as e:
-        print(f"[ERROR] Could not encrypt {pdf_path}: {e}")
-        return False
-
-    # Write encrypted file
-    try:
         with open(out_path, "wb") as f:
             writer.write(f)
     except Exception as e:
-        print(f"[ERROR] Could not write {out_path}: {e}")
+        print(f"[ERROR] Failed processing {pdf_path}: {e}")
         return False
 
-    # Verify encryption before deleting original
+    # Verify before deleting original
     try:
         test_reader = PdfReader(str(out_path))
-        if not test_reader.is_encrypted:
-            print(f"[ERROR] File is not encrypted: {out_path}")
+        if (not test_reader.is_encrypted) or (test_reader.decrypt(password) == 0):
+            print(f"[ERROR] Verification failed: {out_path}")
             return False
-
-        success = test_reader.decrypt(password) != 0
-        if not success:
-            print(f"[ERROR] Verification failed for: {out_path}")
-            return False
-
     except Exception as e:
-        print(f"[ERROR] Verification failed reading {out_path}: {e}")
+        print(f"[ERROR] Verification failed: {e}")
         return False
 
-    # Remove original only after successful verification
     try:
         pdf_path.unlink()
-        print(f"[OK] Encrypted and removed original: {pdf_path.name}")
+        print(f"[OK] {pdf_path.name} -> {out_path.name}")
         return True
     except Exception as e:
         print(f"[WARN] Encrypted but could not delete original: {e}")
@@ -76,32 +53,24 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
 
 
 def main():
-    # Expect folder and password as CLI arguments
     if len(sys.argv) != 3:
         print('Usage: python pdf_paranoia_encrypt.py "FOLDER" "PASSWORD"')
-        sys.exit(1)
+        raise SystemExit(1)
 
     root = Path(sys.argv[1]).expanduser().resolve()
     password = sys.argv[2]
 
-    if not root.exists() or not root.is_dir():
+    if not root.is_dir():
         print(f"[ERROR] Invalid folder: {root}")
-        sys.exit(1)
+        raise SystemExit(1)
 
     count = 0
-
-    # Traverse directory tree and process PDFs
     for foldername, _, filenames in os.walk(root):
         for filename in filenames:
-            if not filename.lower().endswith(".pdf"):
-                continue
-            if filename.lower().endswith("_encrypted.pdf"):
-                continue
-
-            pdf_path = Path(foldername) / filename
-
-            if encrypt_pdf(pdf_path, password):
-                count += 1
+            name = filename.lower()
+            if name.endswith(".pdf") and not name.endswith("_encrypted.pdf"):
+                if encrypt_pdf(Path(foldername) / filename, password):
+                    count += 1
 
     print(f"\nDone. PDFs encrypted: {count}")
 
