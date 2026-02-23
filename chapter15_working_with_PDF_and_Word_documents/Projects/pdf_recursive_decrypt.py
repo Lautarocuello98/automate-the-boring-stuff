@@ -1,7 +1,7 @@
 # Lautarocuello98
-# pdf_paranoia_decrypt.py
+# pdf_recursive_decrypt.py
 # Recursively decrypts _encrypted.pdf files and creates _decrypted.pdf copies.
-# Usage: python pdf_paranoia_decrypt.py "FOLDER" "PASSWORD"
+# Usage: python pdf_recursive_decrypt.py "FOLDER" "PASSWORD"
 
 import os
 import sys
@@ -15,17 +15,17 @@ def decrypt_pdf(pdf_path: Path, password: str) -> bool:
     )
 
     if out_path.exists():
-        print(f"[SKIP] {out_path} already exists")
+        print(f"[SKIP] {out_path.name} already exists")
         return False
 
     try:
         reader = PdfReader(str(pdf_path))
     except Exception as e:
-        print(f"[ERROR] Cannot read {pdf_path}: {e}")
+        print(f"[ERROR] Cannot read {pdf_path.name}: {e}")
         return False
 
     if not reader.is_encrypted:
-        print(f"[SKIP] Not encrypted: {pdf_path}")
+        print(f"[SKIP] Not encrypted: {pdf_path.name}")
         return False
 
     try:
@@ -33,7 +33,7 @@ def decrypt_pdf(pdf_path: Path, password: str) -> bool:
             print(f"[BAD PASS] Incorrect password for {pdf_path.name}")
             return False
     except Exception as e:
-        print(f"[ERROR] Decrypt failed: {e}")
+        print(f"[ERROR] Decrypt failed for {pdf_path.name}: {e}")
         return False
 
     writer = PdfWriter()
@@ -46,7 +46,7 @@ def decrypt_pdf(pdf_path: Path, password: str) -> bool:
             writer.write(f)
 
     except Exception as e:
-        print(f"[ERROR] Failed writing {out_path}: {e}")
+        print(f"[ERROR] Failed writing {out_path.name}: {e}")
         return False
 
     print(f"[OK] {pdf_path.name} -> {out_path.name}")
@@ -55,7 +55,7 @@ def decrypt_pdf(pdf_path: Path, password: str) -> bool:
 
 def main():
     if len(sys.argv) != 3:
-        print('Usage: python pdf_paranoia_decrypt.py "FOLDER" "PASSWORD"')
+        print('Usage: python pdf_recursive_decrypt.py "FOLDER" "PASSWORD"')
         raise SystemExit(1)
 
     root = Path(sys.argv[1]).expanduser().resolve()

@@ -16,9 +16,9 @@ Automate repetitive tasks involving documents, such as extracting text, generati
 Document automation is widely used in real workflows: generating invoices, processing reports, converting files, and extracting information from documents without manual work.
 
 ## Projects
-pdf_paranoia_encrypt.py (encrypts PDFs and saves a copy with the suffix _encrypted.pdf.)
+pdf_recursive_encrypt.py (encrypts PDFs and saves a copy with the suffix _encrypted.pdf.)
 
-pdf_paranoia_decrypt.py (Finds encrypted PDFs, attempts to decrypt them and creates a decrypted copy.)
+pdf_recursive_decrypt.py (Finds encrypted PDFs, attempts to decrypt them and creates a decrypted copy.)
 
 custom_invitations.py (Generate a Word document with one invitation per guest name.)
 

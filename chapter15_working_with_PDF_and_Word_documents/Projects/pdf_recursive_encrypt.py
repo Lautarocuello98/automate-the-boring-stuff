@@ -1,7 +1,7 @@
 # Lautarocuello98
-# pdf_paranoia_encrypt.py
+# pdf_recursive_encrypt.py
 # Recursively encrypts PDFs, verifies the result, then removes the original.
-# Usage: python pdf_paranoia_encrypt.py "FOLDER" "PASSWORD"
+# Usage: python pdf_recursive_encrypt.py "FOLDER" "PASSWORD"
 
 import os
 import sys
@@ -13,11 +13,17 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
     out_path = pdf_path.with_name(pdf_path.stem + "_encrypted.pdf")
 
     if out_path.exists():
-        print(f"[SKIP] {out_path} already exists")
+        print(f"[SKIP] {out_path.name} already exists")
         return False
 
     try:
         reader = PdfReader(str(pdf_path))
+
+        # Skip already encrypted PDFs
+        if reader.is_encrypted:
+            print(f"[SKIP] Already encrypted: {pdf_path.name}")
+            return False
+
     except Exception as e:
         print(f"[ERROR] Cannot read {pdf_path}: {e}")
         return False
@@ -37,16 +43,16 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
         print(f"[ERROR] Failed processing {pdf_path}: {e}")
         return False
 
-    # Verify before deleting original
+    # Verify encryption before deleting original
     try:
         test_reader = PdfReader(str(out_path))
 
         if not test_reader.is_encrypted:
-            print(f"[ERROR] File not encrypted: {out_path}")
+            print(f"[ERROR] File not encrypted: {out_path.name}")
             return False
 
         if test_reader.decrypt(password) == 0:
-            print(f"[ERROR] Verification failed: wrong password")
+            print(f"[ERROR] Verification failed for {out_path.name}")
             return False
 
     except Exception as e:
@@ -64,7 +70,7 @@ def encrypt_pdf(pdf_path: Path, password: str) -> bool:
 
 def main():
     if len(sys.argv) != 3:
-        print('Usage: python pdf_paranoia_encrypt.py "FOLDER" "PASSWORD"')
+        print('Usage: python pdf_recursive_encrypt.py "FOLDER" "PASSWORD"')
         raise SystemExit(1)
 
     root = Path(sys.argv[1]).expanduser().resolve()
