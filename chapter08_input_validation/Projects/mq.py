@@ -1,3 +1,5 @@
+# Lautarocuello98
+
 import random
 import time
 
@@ -6,6 +8,7 @@ print("Welcome to the Multiplication Quiz!")
 number_of_questions = 10
 correct_answers = 0
 
+# Main quiz loop
 for question_number in range(number_of_questions):
     num1 = random.randint(0,9)
     num2 = random.randint(0,9)
@@ -13,7 +16,7 @@ for question_number in range(number_of_questions):
 
     start_time = time.time()
     intentos = 0
-
+    # Up to 3 attempts per question, 8 second limit
     while intentos < 3:
         elapsed_time = time.time() - start_time
         if elapsed_time > 8:
