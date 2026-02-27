@@ -1,51 +1,71 @@
-#! python3 
-# resize_and_logo.py - (Remake) - Resizes all images in current working directory to fit 
-# in a 300x300 square, and adds catlogo.png to the lower-right corner (only if the image is at least 2x the logo size).
+# Lautarocuello98 - resize_and_logo.py
+# Batch image resizing + conditional logo watermarking
 
-import os
+from pathlib import Path
 from PIL import Image
 
-square_fit_size = 300
-logo_filename = 'catlogo.png'
+# ===== Configuration =====
+SQUARE_FIT_SIZE = 300
+LOGO_FILENAME = "catlogo.png"
+OUTPUT_DIR_NAME = "with_logo"
+SUPPORTED_FORMATS = (".png", ".jpg", ".jpeg", ".gif", ".bmp")
 
-logo_im = Image.open(logo_filename)
-logo_width, logo_height = logo_im.size
 
-os.makedirs('with_logo', exist_ok=True)
+def resize_image(image: Image.Image, max_size: int) -> Image.Image:
+    """Resize image proportionally to fit within max_size x max_size."""
+    image.thumbnail((max_size, max_size))
+    return image
 
-for filename in os.listdir('.'):
 
-    # Skip non-image files and the logo itself
-    if (not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp'))) or filename.lower() == logo_filename:
-        continue
+def apply_logo(image: Image.Image, logo: Image.Image) -> Image.Image:
+    """Apply logo to bottom-right corner if image is large enough."""
+    width, height = image.size
+    logo_width, logo_height = logo.size
 
-    im = Image.open(filename)
-    width, height = im.size
-
-    # Resize if needed
-    if width > square_fit_size or height > square_fit_size:
-
-        if width > height:
-            height = int((square_fit_size / width) * height)
-            width = square_fit_size
-        else:
-            width = int((square_fit_size / height) * width)
-            height = square_fit_size
-
-        print(f'Resizing {filename}...')
-        im = im.resize((width, height))
-
-    # Recalculate size (important)
-    width, height = im.size
-
-    # Only add the logo if the image is at least 2x the logo in BOTH dimensions 
     if width < logo_width * 2 or height < logo_height * 2:
-        print(f'skipping logo for {filename} (image too small).')
-        continue
+        print("Skipping logo (image too small).")
+        return image
 
-    # Add logo
-    print(f'Adding logo to {filename}...')
-    im.paste(logo_im, (width - logo_width, height - logo_height), logo_im)
+    image.paste(
+        logo,
+        (width - logo_width, height - logo_height),
+        logo
+    )
+    return image
 
-    # Save
-    im.save(os.path.join('with_logo', filename))   
+
+def process_images():
+    base_dir = Path(".")
+    output_dir = base_dir / OUTPUT_DIR_NAME
+    output_dir.mkdir(exist_ok=True)
+
+    try:
+        logo = Image.open(LOGO_FILENAME).convert("RGBA")
+    except Exception as e:
+        print(f"Error loading logo: {e}")
+        return
+
+    for image_path in base_dir.iterdir():
+
+        if (
+            not image_path.suffix.lower() in SUPPORTED_FORMATS
+            or image_path.name == LOGO_FILENAME
+        ):
+            continue
+
+        try:
+            print(f"Processing {image_path.name}...")
+            image = Image.open(image_path).convert("RGBA")
+
+            image = resize_image(image, SQUARE_FIT_SIZE)
+            image = apply_logo(image, logo)
+
+            output_path = output_dir / image_path.name
+            image.save(output_path)
+
+        except Exception as e:
+            print(f"Skipping {image_path.name}: {e}")
+
+
+if __name__ == "__main__":
+    process_images()
