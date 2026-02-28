@@ -16,3 +16,5 @@ Regular expressions are powerful but require careful practice.
 date_detections.py
 
 phoneAndEmail.py
+
+password.py
