@@ -1,4 +1,4 @@
-
+# Lautarocuello98
 # text_to_spreadsheet.py
 # Reads multiple text files and writes their contents into an Excel spreadsheet.
 # Each input file is written to a separate column, and each line becomes a row.
@@ -16,7 +16,6 @@ while True:
     
     filenames.append(filename)
 
-# Exit if no files were provided
 if not filenames:
     print('No files provided.')
     exit()
