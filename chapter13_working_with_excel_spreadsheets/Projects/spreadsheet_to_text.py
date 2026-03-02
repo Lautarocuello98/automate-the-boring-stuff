@@ -27,15 +27,19 @@ for col in range(1, sheet.max_column + 1):
 
     # Sanitize filename (avoid invalid characters)
     safe = "".join(c for c in name if c.isalnum() or c in (" ", "_", "-")).rstrip()
+    safe = safe or f"column_{col}"
+
     txt = out / f"{safe}.txt"
 
     # Write column values to file
     with txt.open("w", encoding="utf-8") as f:
         for row in range(1, sheet.max_row + 1):
-            v = sheet.cell(row, col).value
+            v = sheet.cell(row=row, column=col).value
             if v is not None:
                 f.write(f"{v}\n")
 
     files.append(txt.name)
 
 print(f"Done ✅ Created {len(files)} files in {out}/")
+
+
