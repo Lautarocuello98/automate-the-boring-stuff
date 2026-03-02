@@ -1,45 +1,41 @@
 # Lautarocuello98
 # spreadsheet_to_text.py
-# Reads an Excel spreadsheet and writes the contents into multiple text files.
+# Writes each column of the active sheet into a separate .txt file.
 
+from pathlib import Path
 import openpyxl
 
-# Collect the spreadsheet from the user
-filename = input('Enter the spreadsheet name: ').strip()
+# Get Excel file from user
+xlsx = Path(input("Enter the spreadsheet name: ").strip().strip('"'))
+if not xlsx.exists():
+    raise SystemExit(f"File not found: {xlsx}")
 
-# Exit if no file was provided
-if not filename:
-    print('No file provided')
-    exit()
+# Create output folder
+out = Path("output")
+out.mkdir(exist_ok=True)
 
-print(f'Opening {filename}...')
-
-# Load workbook
-try:
-    wb = openpyxl.load_workbook(filename)
-except FileNotFoundError:
-    print(f'File not found: {filename}')
-    exit()
-
+# Load workbook and select active sheet
+wb = openpyxl.load_workbook(xlsx)
 sheet = wb.active
-filenames = []
 
-# Iterate over columns and write each one to a text file
+files = []
 for col in range(1, sheet.max_column + 1):
-    
-    output_filename = f'column_{col}.txt'
-    print(f'Writing {output_filename}...')
-    filenames.append(output_filename)
 
-    with open(output_filename, 'w', encoding='utf-8') as f:
+    # Use header as filename (fallback if empty)
+    name = sheet.cell(1, col).value
+    name = str(name).strip() if name else f"column_{col}"
 
+    # Sanitize filename (avoid invalid characters)
+    safe = "".join(c for c in name if c.isalnum() or c in (" ", "_", "-")).rstrip()
+    txt = out / f"{safe}.txt"
+
+    # Write column values to file
+    with txt.open("w", encoding="utf-8") as f:
         for row in range(1, sheet.max_row + 1):
-            value = sheet.cell(row=row, column=col).value
+            v = sheet.cell(row, col).value
+            if v is not None:
+                f.write(f"{v}\n")
 
-            if value is None:
-                continue
+    files.append(txt.name)
 
-            f.write(f'{value}\n')
-
-print("Done")
-print(f'The files are {filenames}')
+print(f"Done ✅ Created {len(files)} files in {out}/")
