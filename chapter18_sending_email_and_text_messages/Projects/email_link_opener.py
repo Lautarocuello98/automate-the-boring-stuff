@@ -13,7 +13,7 @@ import pyzmail
 # ---------------- CONFIG ----------------
 IMAP_HOST = "imap.gmail.com"
 EMAIL_ADDRESS = "YOUR_EMAIL@gmail.com"
-EMAIL_PASSWORD = "YOUR_APP_PASSWORD"  # Use an app password (Gmail), not your normal password.
+EMAIL_PASSWORD = "YOUR_APP_PASSWORD"  
 
 SUBJECT_KEYWORD = "OPENLINK"  # The email subject must contain this word.
 CHECK_EVERY_SECONDS = 15 * 60  # 15 minutes
