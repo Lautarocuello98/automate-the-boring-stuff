@@ -1,45 +1,47 @@
 # Lautarocuello98
-# stopwatch.py - A simple stopwatch program with aligned output
+# stopwatch.py — A simple CLI stopwatch with lap tracking, aligned output,
+# clipboard copy, and automatic lap logging to a text file.
 
 import time
+from pathlib import Path
 import pyperclip
 
 
-# Display the program's instructions
-print('Press ENTER to begin. Afterward, press ENTER to "click" the stopwatch. Press Ctrl-C to quit.')
+print("Press ENTER to start the stopwatch.")
+print("Press ENTER again to record a lap.")
+print("Press Ctrl+C to quit.\n")
 
-input()                     # press Enter to begin
+input()
 
-print('Started')
+print("Started...\n")
 
-start_time = time.time()    # get the first lap's start time
+start_time = time.time()
 last_time = start_time
 lap_num = 1
 
+log_file = Path("stopwatch_laps.txt")
+log_file.write_text("Stopwatch session\n\n", encoding="utf-8")
 
 try:
     while True:
-        input()     # Wait for user to record a lap
-        now = time.time()  # Capture current time once for accurate calculations
-        
-        # Calculate lap time and total elapsed time
-        lap_time = round(now - last_time, 2)
-        total_time = round(now - start_time, 2)
+        input()  # Wait for ENTER to record a lap
+
+        now = time.time()
+        lap_time = now - last_time
+        total_time = now - start_time
         last_time = now
 
-        # Format values to keep output aligned
-        total_str = f'{total_time:.2f}'.rjust(5)
-        lap_str = f'{lap_time:.2f}'.rjust(5)
-        lap_num_str = f'{lap_num}'.ljust(3)
-
-        result = f"Lap #{lap_num_str} - {total_str} ({lap_str})"
+        result = f"Lap {lap_num:<3} - {total_time:>6.2f} ({lap_time:>6.2f})"
         print(result)
 
-        # Copy last lap result to clipboard
+        # Copy latest lap to clipboard
         pyperclip.copy(result)
+
+        # Append lap to log file
+        with log_file.open("a", encoding="utf-8") as file:
+            file.write(result + "\n")
 
         lap_num += 1
 
-
 except KeyboardInterrupt:
-    print('\nDone')
+    print(f"\nDone. Laps saved to: {log_file}")
