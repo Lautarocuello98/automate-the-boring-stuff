@@ -1,3 +1,4 @@
+# Lautarocuello98
 # stopwatch.py - A simple stopwatch program with aligned output
 
 import time
@@ -38,7 +39,6 @@ try:
         pyperclip.copy(result)
 
         lap_num += 1
-
 
 
 except KeyboardInterrupt:
